@@ -1,5 +1,5 @@
 angular.module('myApp',[])
-  .directive('customBox',function() {
+  .directive('customBox',function($compile) {
     return {
       templateUrl: 'customBox.html',
       controller: function($scope) {
@@ -7,9 +7,12 @@ angular.module('myApp',[])
         console.log($scope);
       },
       link: function($scope,$element,$attr) {
-        console.log($scope);
+        // console.log($scope);
         console.log($element);
-        console.log($attr);
+        console.log($compile('<div>Hello</div><div ng-bind="name"></div>'));
+        $element.append(angular.element($compile('<div>Hello</div><div ng-bind="name"></div>')($scope)));
+
+        // console.log($attr);
       }
     }
   })
